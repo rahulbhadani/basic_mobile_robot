@@ -11,6 +11,10 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
 if(BUILD_TESTING)
+	install(
+	  DIRECTORY config launch maps meshes models params rviz src worlds
+	  DESTINATION share/${PROJECT_NAME}
+	)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
   # comment the line when a copyright and license is added to all source files

@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <let name="rviz_config_file" value="$(find-pkg-share basic_mobile_robot)/rviz/urdf_config.rviz"/>
+  <let name="default_model_path" value="$(find-pkg-share basic_mobile_robot)/models/basic_mobile_bot_v1.urdf"/>
+  <let name="gui" value="True" />
+  <arg name="use_robot_state_pub" default="True" />
+  <arg name="use_rviz" default="True" />
+  <arg name="use_sim_time" default="True" />
+
+
+
+  <group>
+    <node
+      name="joint_state_publisher_gui"
+      pkg="joint_state_publisher_gui"
+      exec="joint_state_publisher_gui"
+    />
+  </group>
+
+
+  <group>
+    <node name="robot_state_publisher"
+      pkg="robot_state_publisher"
+      exec="robot_state_publisher"
+      output="screen">
+     <param name="use_sim_time" value="$(var use_sim_time)"/>
+     <param name="robot_description" value="$(command 'xacro  $(var default_model_path)')"/>
+    </node>
+  </group>
+
+ 
+
+  <group>
+    <node name="rviz2"
+      pkg="rviz2"
+      exec="rviz2"
+      output="screen"
+      args="-d $(var rviz_config_file)" />
+  </group>
+-->
+</launch>
+
